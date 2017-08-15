@@ -37,7 +37,7 @@ public class Interp {
 	 * @param stm
 	 * @return
 	 */
-
+	public static Queue<Stm> queue = new LinkedList<Stm>();
 	static int maxargs(Stm stm) {
 		/* you write this part */
 
@@ -68,10 +68,9 @@ public class Interp {
 		// }
 		// }
 
-		Queue<Stm> queue = new LinkedList<Stm>();
+		
 		queue.add(stm);
 		int maxPrintNum = 0;
-		
 		
 		while(!queue.isEmpty()){
 			Stm s = queue.poll();
@@ -82,51 +81,48 @@ public class Interp {
 			} else if (stm instanceof AssignStm) {
 				continue;
 			} else if (stm instanceof PrintStm) {
-				
+				int curNum = traversePrintStm((PrintStm)stm);
+				maxPrintNum = curNum>maxPrintNum?curNum:maxPrintNum;
 			}
 			
 		}
-		return 0;
+		return maxPrintNum;
 	}
-
-	public static int vistExp(Exp exp) {
-
-		if (exp instanceof EseqExp) {
-
-		} else {
-			return 0;
+	
+	public static int traversePrintStm(PrintStm ps){
+		ExpList expList = ps.exps;
+		int expCount = 0;
+		Exp nextExp = null;
+		ExpList nextExpList = null;
+		
+		while(expList instanceof PairExpList){
+			//if expList is the instanceof PairExpList
+			nextExp = ((PairExpList)expList).head;
+			nextExpList = ((PairExpList)expList).tail;
+			
+			if(nextExp instanceof EseqExp){
+				queue.add(((EseqExp)nextExp).stm);
+			}
+			expCount++;
+			expList = nextExpList;
 		}
-
-		return 0;
-	}
-
-	public static int visitPairExpList(ExpList exps) {
-
-		if (exps instanceof LastExpList) {
-
-		} else if (exps instanceof PairExpList) {
-
+		//then expList is instance of LastExpList
+		nextExp = ((LastExpList)nextExpList).head;
+		if(nextExp instanceof EseqExp){
+			queue.add(((EseqExp)nextExp).stm);
 		}
-
-		return 0;
+		expCount++;
+		
+		return expCount;
 	}
-
-	public static int get_maxargs_from_exp(Exp e) {
-
-		if (e instanceof EseqExp) {
-			Stm s = ((EseqExp) e).stm;
-			return maxargs(s);
-		} else {// IdExp, NumExp, OpExp,
-			return 1;
-		}
-	}
-
+	
 	static void interp(Stm s) {
 		/* you write this part */
 	}
 
 	public static void main(String args[]) throws java.io.IOException {
-		System.out.println(maxargs(prog));
+		System.out.println("test");
+//		System.out.println(maxargs(prog));
 		interp(prog);
 	}
 
