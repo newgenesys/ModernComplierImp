@@ -40,51 +40,24 @@ public class Interp {
 	public static Queue<Stm> queue = new LinkedList<Stm>();
 	static int maxargs(Stm stm) {
 		/* you write this part */
-
-		// if(s instanceof CompoundStm){
-		// Stm stm1 = ((CompoundStm) s).stm1;
-		// Stm stm2 = ((CompoundStm) s).stm2;
-		// return Math.max(maxargs(stm1), maxargs(stm2));
-		// }else if(s instanceof AssignStm){
-		// return 0;
-		// }else if(s instanceof PrintStm){
-		// ExpList expList = ((PrintStm) s).exps;
-		// if(expList instanceof LastExpList){
-		// Exp head = ((LastExpList) expList).head;
-		//
-		// if(head instanceof EseqExp){// means that there are at least 2 args
-		// Stm ss = ((EseqExp) head).stm;
-		// int max_inside_stm = maxargs(ss);
-		// return Math.max(2, max_inside_stm);
-		// }else{// IdExp, NumExp, OpExp
-		// return 1;
-		// }
-		// }else if(expList instanceof PairExpList){
-		// Exp head = ((PairExpList) expList).head;
-		// ExpList tail = ((PairExpList) expList).tail;
-		//
-		// int current_num =
-		//
-		// }
-		// }
-
-		
 		queue.add(stm);
 		int maxPrintNum = 0;
 		
 		while(!queue.isEmpty()){
 			Stm s = queue.poll();
 			
-			if (stm instanceof CompoundStm) {
-				queue.add(((CompoundStm) stm).stm1);
-				queue.add(((CompoundStm) stm).stm2);
-			} else if (stm instanceof AssignStm) {
-				continue;
-			} else if (stm instanceof PrintStm) {
-				int curNum = traversePrintStm((PrintStm)stm);
+			if (s instanceof CompoundStm) {
+				queue.add(((CompoundStm) s).stm1);
+				queue.add(((CompoundStm) s).stm2);
+			} else if (s instanceof AssignStm) {
+				Exp exp = ((AssignStm)s).exp;
+				if(exp instanceof EseqExp){
+					queue.add(((EseqExp)exp).stm);
+				}
+			} else if (s instanceof PrintStm) {
+				int curNum = traversePrintStm((PrintStm)s);
 				maxPrintNum = curNum>maxPrintNum?curNum:maxPrintNum;
 			}
-			
 		}
 		return maxPrintNum;
 	}
@@ -107,7 +80,7 @@ public class Interp {
 			expList = nextExpList;
 		}
 		//then expList is instance of LastExpList
-		nextExp = ((LastExpList)nextExpList).head;
+		nextExp = ((LastExpList)expList).head;
 		if(nextExp instanceof EseqExp){
 			queue.add(((EseqExp)nextExp).stm);
 		}
@@ -122,8 +95,8 @@ public class Interp {
 
 	public static void main(String args[]) throws java.io.IOException {
 		System.out.println("test");
-//		System.out.println(maxargs(prog));
-		interp(prog);
+		System.out.println(maxargs(prog));
+//		interp(prog);
 	}
 
 }
