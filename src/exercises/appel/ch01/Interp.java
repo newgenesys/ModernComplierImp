@@ -51,9 +51,7 @@ public class Interp {
 				queue.add(((CompoundStm) s).stm2);
 			} else if (s instanceof AssignStm) {
 				Exp exp = ((AssignStm)s).exp;
-				if(exp instanceof EseqExp){
-					queue.add(((EseqExp)exp).stm);
-				}
+				FindPrintStmFromExp(exp);
 			} else if (s instanceof PrintStm) {
 				int curNum = traversePrintStm((PrintStm)s);
 				maxPrintNum = curNum>maxPrintNum?curNum:maxPrintNum;
@@ -62,6 +60,11 @@ public class Interp {
 		return maxPrintNum;
 	}
 	
+	/**
+	 * traverse the PrintStm, and if there are some other printStme, add to the queue
+	 * @param ps
+	 * @return
+	 */
 	public static int traversePrintStm(PrintStm ps){
 		ExpList expList = ps.exps;
 		int expCount = 0;
@@ -73,30 +76,100 @@ public class Interp {
 			nextExp = ((PairExpList)expList).head;
 			nextExpList = ((PairExpList)expList).tail;
 			
-			if(nextExp instanceof EseqExp){
-				queue.add(((EseqExp)nextExp).stm);
-			}
+			FindPrintStmFromExp(nextExp);
 			expCount++;
 			expList = nextExpList;
 		}
 		//then expList is instance of LastExpList
 		nextExp = ((LastExpList)expList).head;
-		if(nextExp instanceof EseqExp){
-			queue.add(((EseqExp)nextExp).stm);
-		}
+		FindPrintStmFromExp(nextExp);
 		expCount++;
 		
 		return expCount;
 	}
 	
-	static void interp(Stm s) {
-		/* you write this part */
+	/**
+	 * check if there are PrintStm in a given Exp
+	 * @param nextExp
+	 */
+	private static void FindPrintStmFromExp(Exp nextExp) {
+		if(nextExp instanceof EseqExp){
+			queue.add(((EseqExp)nextExp).stm);
+		}
 	}
-
+	
+	
+	/**
+	 * Write a Java function void interp(Stm s) that ¡°interprets¡± a program
+	 * in this language. To write in a ¡°functional programming¡± style ¨C in which
+	 * you never use an assignment statement ¨C initialize each local variable as you
+	 * declare it.
+	 * @param s
+	 */
+	static void interp(Stm stm) {
+		/* you write this part */
+//		Table t = new Table(null,null,null);
+//		interpStm(stm,t);
+		
+	}
+	
+	static Table interpStm(Stm stm, Table t){
+		
+		if(stm instanceof AssignStm){
+			String id = ((AssignStm)stm).id;
+			Exp exp = ((AssignStm)stm).exp;
+			IntAndTable result = interpExp(exp,t);
+			
+		}else if(stm instanceof CompoundStm){
+			
+		}else if(stm instanceof PrintStm){
+			
+		}
+		
+		return new Table("",1,t);
+	}
+	
+	static IntAndTable interpExp(Exp e, Table t){
+		
+		return new IntAndTable(0,t);
+	}
+	
+	/**
+	 * update the value of id
+	 * @param t
+	 * @param id
+	 * @param value
+	 * @return
+	 */
+	static Table update(Table t, String id, int value){
+		Table tempTable = new Table(id,value,t);
+		return tempTable;
+	}
+	
+	/**
+	 * lookup value
+	 * @param t
+	 * @param key
+	 * @return value of key
+	 */
+	static int lookup(Table t, String key){
+		String id = t.id;
+		int value = 0;
+		Table temp = t;
+		while(id!=key){
+			temp = t.tail;
+		}
+		value = temp.value;
+		return value;
+	}
+	
 	public static void main(String args[]) throws java.io.IOException {
-		System.out.println("test");
 		System.out.println(maxargs(prog));
+		
+		System.out.println("-----------start interp--------------");
 //		interp(prog);
+		interp(prog);
+		
 	}
 
 }
