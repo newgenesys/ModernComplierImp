@@ -1,4 +1,4 @@
-package exercises.appel.ch01;
+package mcij.appel.ch01;
 
 /**
  * @author Deng Li
@@ -7,18 +7,18 @@ package exercises.appel.ch01;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import exercises.appel.ch01.Exp.EseqExp;
-import exercises.appel.ch01.Exp.IdExp;
-import exercises.appel.ch01.Exp.NumExp;
-import exercises.appel.ch01.Exp.OpExp;
-import exercises.appel.ch01.ExpList.LastExpList;
-import exercises.appel.ch01.ExpList.PairExpList;
-import exercises.appel.ch01.Inf.Exp;
-import exercises.appel.ch01.Inf.ExpList;
-import exercises.appel.ch01.Inf.Stm;
-import exercises.appel.ch01.Stm.AssignStm;
-import exercises.appel.ch01.Stm.CompoundStm;
-import exercises.appel.ch01.Stm.PrintStm;
+import mcij.appel.ch01.Exp.EseqExp;
+import mcij.appel.ch01.Exp.IdExp;
+import mcij.appel.ch01.Exp.NumExp;
+import mcij.appel.ch01.Exp.OpExp;
+import mcij.appel.ch01.ExpList.LastExpList;
+import mcij.appel.ch01.ExpList.PairExpList;
+import mcij.appel.ch01.Inf.Exp;
+import mcij.appel.ch01.Inf.ExpList;
+import mcij.appel.ch01.Inf.Stm;
+import mcij.appel.ch01.Stm.AssignStm;
+import mcij.appel.ch01.Stm.CompoundStm;
+import mcij.appel.ch01.Stm.PrintStm;
 
 public class Interp {
 	static Stm prog = new CompoundStm(

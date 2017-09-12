@@ -1,4 +1,4 @@
-package exercises.appel.ch01;
+package mcij.appel.ch01;
 
 /**
  * 
