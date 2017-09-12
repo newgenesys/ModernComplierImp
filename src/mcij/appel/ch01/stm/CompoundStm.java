@@ -1,6 +1,6 @@
-package mcij.appel.ch01.Stm;
+package mcij.appel.ch01.stm;
 
-import mcij.appel.ch01.Inf.Stm;
+import mcij.appel.ch01.inf.Stm;
 
 public class CompoundStm extends Stm {
 

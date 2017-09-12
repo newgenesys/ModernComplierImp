@@ -7,18 +7,20 @@ package mcij.appel.ch01;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import mcij.appel.ch01.Exp.EseqExp;
-import mcij.appel.ch01.Exp.IdExp;
-import mcij.appel.ch01.Exp.NumExp;
-import mcij.appel.ch01.Exp.OpExp;
-import mcij.appel.ch01.ExpList.LastExpList;
-import mcij.appel.ch01.ExpList.PairExpList;
-import mcij.appel.ch01.Inf.Exp;
-import mcij.appel.ch01.Inf.ExpList;
-import mcij.appel.ch01.Inf.Stm;
-import mcij.appel.ch01.Stm.AssignStm;
-import mcij.appel.ch01.Stm.CompoundStm;
-import mcij.appel.ch01.Stm.PrintStm;
+import mcij.appel.ch01.ds.IntAndTable;
+import mcij.appel.ch01.ds.Table;
+import mcij.appel.ch01.exp.EseqExp;
+import mcij.appel.ch01.exp.IdExp;
+import mcij.appel.ch01.exp.NumExp;
+import mcij.appel.ch01.exp.OpExp;
+import mcij.appel.ch01.expList.LastExpList;
+import mcij.appel.ch01.expList.PairExpList;
+import mcij.appel.ch01.inf.Exp;
+import mcij.appel.ch01.inf.ExpList;
+import mcij.appel.ch01.inf.Stm;
+import mcij.appel.ch01.stm.AssignStm;
+import mcij.appel.ch01.stm.CompoundStm;
+import mcij.appel.ch01.stm.PrintStm;
 
 public class Interp {
 	static Stm prog = new CompoundStm(

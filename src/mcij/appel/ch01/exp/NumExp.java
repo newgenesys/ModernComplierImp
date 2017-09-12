@@ -1,6 +1,6 @@
-package mcij.appel.ch01.Exp;
+package mcij.appel.ch01.exp;
 
-import mcij.appel.ch01.Inf.Exp;
+import mcij.appel.ch01.inf.Exp;
 
 public class NumExp extends Exp {
 	public int num;

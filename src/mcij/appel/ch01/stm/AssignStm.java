@@ -1,7 +1,7 @@
-package mcij.appel.ch01.Stm;
+package mcij.appel.ch01.stm;
 
-import mcij.appel.ch01.Inf.Exp;
-import mcij.appel.ch01.Inf.Stm;
+import mcij.appel.ch01.inf.Exp;
+import mcij.appel.ch01.inf.Stm;
 
 public class AssignStm extends Stm {
 	public String id;

@@ -1,7 +1,7 @@
-package mcij.appel.ch01.ExpList;
+package mcij.appel.ch01.expList;
 
-import mcij.appel.ch01.Inf.Exp;
-import mcij.appel.ch01.Inf.ExpList;
+import mcij.appel.ch01.inf.Exp;
+import mcij.appel.ch01.inf.ExpList;
 
 public class LastExpList extends ExpList {
 	public Exp head;

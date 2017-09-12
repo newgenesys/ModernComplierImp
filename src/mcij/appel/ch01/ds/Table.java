@@ -1,4 +1,4 @@
-package mcij.appel.ch01;
+package mcij.appel.ch01.ds;
 
 /**
  *  Represent a “table,” mapping identifiers to the integer values
@@ -8,11 +8,11 @@ package mcij.appel.ch01;
  * @version 2017年8月16日下午12:49:34
  */
 public class Table {
-	String id;
-	int value;
-	Table tail;
+	public String id;
+	public int value;
+	public Table tail;
 
-	Table(String i, int v, Table t) {
+	public Table(String i, int v, Table t) {
 		id = i;
 		value = v;
 		tail = t;
