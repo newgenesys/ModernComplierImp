@@ -1,3 +1,3 @@
-try to revise the knowledge of compiler.
+Try to revise the knowledge of compiler.
 
-keep reading the book "Modern Compiler Implementation in Java"
+Keep reading the book "Modern Compiler Implementation in Java"
